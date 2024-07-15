@@ -7,6 +7,9 @@ import org.example.backend.rootServices.AddStudentRootServoce;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 
 /**
  * Asosiy service va bu bajariluvchi dastur harakatlarnini nazorat qiladi
@@ -27,6 +30,11 @@ public class AddStudentService implements AddStudentRootServoce {
         return convertDto(saveAddStudent);
     }
 
+    // Bazadagi elementlarni olish qismi
+    @Override
+    public List<AddStudentDto> takeStudents() {
+        return addStudentRepos.findAll().stream().map(this::convertDto).collect(Collectors.toList());
+    }
 
 
 

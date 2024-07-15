@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 
 /**
  * Asosiy bog'lanishni amalga oshiruvchi qism bilan ishlash
@@ -27,5 +29,13 @@ public class AddStudentController {
         // Student jadvali bilan ishlash
         AddStudentDto savedStudents = addStudentRootServoce.saveStudents(addStudentDto);
         return ResponseEntity.ok(savedStudents);
+    }
+
+
+    // Hamma studentlarni olib uzatish qismi
+    @GetMapping("/takes")
+    public ResponseEntity<List<AddStudentDto>> getAllStudents() {
+        List<AddStudentDto> allStudents = addStudentRootServoce.takeStudents();
+        return ResponseEntity.ok(allStudents);
     }
 }
